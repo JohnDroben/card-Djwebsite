@@ -1,0 +1,37 @@
+{% load static %}
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт - визитка</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
+    <header>
+        {% block header %}
+        <aside>
+            <img src="{% static 'main/img/logo.png' %}" alt="Логотип">
+        </aside>
+        {% endblock %}
+    </header>
+
+    <nav class="navbar">
+        {% include 'main/navbar.html' %}
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- Основное содержимое страницы -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        <aside class="footer">
+            {% include 'main/footer.html' %}
+        </aside>
+        {% endblock %}
+    </footer>
+</body>
+</html>

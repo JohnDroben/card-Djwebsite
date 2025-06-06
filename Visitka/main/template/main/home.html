@@ -1,0 +1,35 @@
+{% extends "main/layoute.html" %}
+
+{% block title %}Главная страница | Сайт-визитка{% endblock %}
+
+{% block content %}
+<main class="home-content">
+    <h1 class="welcome-title">Добро пожаловать на мой сайт-визитку!</h1>
+
+    <section class="intro-section">
+        <p>Меня зовут [Ваше Имя], я профессиональный [ваша специальность].</p>
+        <p>Этот сайт создан для того, чтобы вы могли узнать больше о моих навыках, опыте и проектах.</p>
+    </section>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Мои навыки</h3>
+            <ul>
+                <li>Профессиональный навык 1</li>
+                <li>Профессиональный навык 2</li>
+                <li>Профессиональный навык 3</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>Портфолио</h3>
+            <p>Ознакомьтесь с моими последними работами и проектами</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Контакты</h3>
+            <p>Свяжитесь со мной для сотрудничества</p>
+        </div>
+    </div>
+</main>
+{% endblock %}
