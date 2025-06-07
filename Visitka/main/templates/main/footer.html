@@ -1,0 +1,80 @@
+{% load static %}
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <div class="footer-brand">
+                <img src="{% static 'main/img/logo-light.png' %}" alt="Логотип" class="footer-logo">
+                <h3>Мое Портфолио</h3>
+            </div>
+            <p class="footer-description">
+                Создаю современные и функциональные решения для вашего бизнеса.
+                Давайте работать вместе!
+            </p>
+            <div class="social-links">
+                <a href="#" class="social-link" target="_blank" aria-label="VKontakte">
+                    <i class="fab fa-vk"></i>
+                </a>
+                <a href="#" class="social-link" target="_blank" aria-label="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-link" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h4 class="footer-title">Навигация</h4>
+            <ul class="footer-links">
+                <li><a href="{% url 'home' %}"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                <li><a href="{% url 'about' %}"><i class="fas fa-chevron-right"></i> Обо мне</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4 class="footer-title">Услуги</h4>
+            <ul class="footer-links">
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Веб-разработка</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Дизайн интерфейсов</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Мобильные приложения</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Техническая поддержка</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Консультации</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4 class="footer-title">Контакты</h4>
+            <ul class="footer-contacts">
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Москва, ул. Примерная, д. 123</span>
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:contact@example.com">contact@example.com</a>
+                </li>
+                <li>
+                    <i class="fas fa-clock"></i>
+                    <span>Пн-Пт: 9:00 - 18:00</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2025 Мое Портфолио. Все права защищены.</p>
+            <div class="footer-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+        </div>
+    </div>
+</footer>

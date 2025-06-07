@@ -1,0 +1,39 @@
+{% load static %}
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="{% url 'home' %}" class="navbar-logo">
+            <div class="logo-container">
+                <img src="{% static 'main/img/logo1.png' %}" alt="Логотип">
+                <span>Мое Портфолио</span>
+            </div>
+        </a>
+
+        <div class="navbar-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="navbar-menu">
+            <li class="navbar-item">
+                <a href="{% url 'home' %}" class="navbar-link{% if request.path == '/' %} active{% endif %}">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'about' %}" class="navbar-link{% if request.path == '/about/' %} active{% endif %}">
+                    <i class="fas fa-user"></i> Обо мне
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    // Скрипт для мобильного меню
+    document.getElementById('mobile-menu').addEventListener('click', function() {
+        const menu = document.querySelector('.navbar-menu');
+        menu.classList.toggle('active');
+        this.classList.toggle('active');
+    });
+</script>
