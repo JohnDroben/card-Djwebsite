@@ -1,0 +1,17 @@
+{% extends "main/layoute.html" %}
+{% load static %}
+
+{% block title %}Сообщение отправлено{% endblock %}
+
+{% block content %}
+<section class="success-section">
+    <div class="container">
+        <div class="success-content">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1>Сообщение успешно отправлено!</h1>
+            <p>Спасибо за ваше сообщение. Я свяжусь с вами в ближайшее время.</p>
+            <a href="{% url 'home' %}" class="home-link">Вернуться на главную</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

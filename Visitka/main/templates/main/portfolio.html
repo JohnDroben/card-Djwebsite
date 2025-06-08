@@ -1,13 +1,37 @@
 {% extends "main/layoute.html" %}
 {% load static %}
 
-{% block title %}
-    <aside class="navbar">
-        {% include 'main/navbar.html' %}
-    </aside>
-{% endblock %}
+{% block title %}Портфолио{% endblock %}
 
 {% block content %}
-    <h1> Мои работы</h1>
+<section class="portfolio-section">
+    <div class="container">
+        <h1 class="section-title">Мои работы</h1>
+        <p class="section-subtitle">Здесь представлены мои последние проекты</p>
 
+        <div class="portfolio-grid">
+            {% for project in projects %}
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="{% static 'main/img/projects/' %}{{ project.image }}" alt="{{ project.title }}">
+                    <div class="portfolio-overlay">
+                        <a href="{{ project.link }}" class="portfolio-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <div class="portfolio-technologies">
+                        {% for tech in project.technologies %}
+                        <span class="tech-badge">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}
