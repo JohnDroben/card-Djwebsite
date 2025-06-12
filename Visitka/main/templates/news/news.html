@@ -16,7 +16,7 @@
                     <i class="far fa-calendar-alt"></i> {{ post.pub_date|date:"d.m.Y H:i" }}
                 </span>
                 <span class="post-author">
-                    <i class="fas fa-user"></i> {{ post.post_author.username }}
+                    <i class="fas fa-user"></i> {{ post.author.username }}
                 </span>
                 {% if post.is_published %}
                 <span class="post-status">
@@ -38,6 +38,3 @@
     </div>
 </section>
 {% endblock %}
-
-
-

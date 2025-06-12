@@ -1,24 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-
+from django.utils import timezone
 
 
 class NewsPost(models.Model):
-    title = models.CharField('Название новости', max_length=50)
-    short_description = models.CharField('Краткое описание новости', max_length=200)
-    content = models.TextField('Новость')
-    pub_date = models.DateTimeField('Дата публикации')
-    post_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='Автор')
-    is_published = models.BooleanField('Опубликована', default=True)
-
-
+    title = models.CharField(max_length=200, verbose_name="Заголовок")
+    content = models.TextField(verbose_name="Содержание")
+    pub_date = models.DateTimeField('Дата публикации', default=timezone.now)
+    is_published = models.BooleanField('Опубликовано', default=True)
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="Автор",
+        related_name='news_posts'
+    )
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'Новость'
-        verbose_name_plural = 'Новости'
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
         ordering = ['-pub_date']
-
