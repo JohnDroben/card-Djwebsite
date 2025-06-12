@@ -3,7 +3,7 @@
     <div class="navbar-container">
         <a href="{% url 'home' %}" class="navbar-logo">
             <div class="logo-container">
-                <img src="{% static 'main/img/logo.png' %}" alt="Logo">
+                <img src="{% static 'main/img/logo1.png' %}" alt="Logo">
                 <span>Мое Портфолио</span>
             </div>
         </a>
@@ -27,6 +27,11 @@
             <li class="navbar-item">
                 <a href="{% url 'portfolio' %}" class="navbar-link{% if request.path == '/portfolio/' %} active{% endif %}">
                     <i class="fas fa-briefcase"></i> Портфолио
+                </a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'news_index' %}" class="navbar-link{% if request.path == '/news/' %} active{% endif %}">
+                    <i class="fas fa-newspaper"></i> Новости
                 </a>
             </li>
             <li class="navbar-item">

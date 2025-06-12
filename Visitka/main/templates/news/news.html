@@ -1,0 +1,43 @@
+{% extends "main/layoute.html" %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+<section class="news-section">
+    <div class="container">
+        <h1>Последние новости</h1>
+
+        {% for post in news %}
+        <article class="news-post">
+            <h2>{{ post.title }}</h2>
+            <div class="post-meta">
+                <span class="post-date">
+                    <i class="far fa-calendar-alt"></i> {{ post.pub_date|date:"d.m.Y H:i" }}
+                </span>
+                <span class="post-author">
+                    <i class="fas fa-user"></i> {{ post.post_author.username }}
+                </span>
+                {% if post.is_published %}
+                <span class="post-status">
+                    <i class="fas fa-check-circle"></i> Опубликовано
+                </span>
+                {% else %}
+                <span class="post-status">
+                    <i class="fas fa-times-circle"></i> Скрыто
+                </span>
+                {% endif %}
+            </div>
+            <div class="post-content">
+                {{ post.content|linebreaks }}
+            </div>
+        </article>
+        {% empty %}
+        <p>Пока нет новостей.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+
+
