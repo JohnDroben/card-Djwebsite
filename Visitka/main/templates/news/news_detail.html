@@ -1,0 +1,45 @@
+{% extends "main/layoute.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<section class="news-detail-section">
+    <div class="container">
+        <article class="news-detail">
+            <header class="news-header">
+                <h1>{{ post.title }}</h1>
+                <div class="post-meta">
+                    <span class="post-date">
+                        <i class="far fa-calendar-alt"></i> {{ post.pub_date|date:"d.m.Y H:i" }}
+                    </span>
+                    <span class="post-author">
+                        <i class="fas fa-user"></i> {{ post.author.username }}
+                    </span>
+                    {% if post.updated_date > post.pub_date %}
+                    <span class="post-updated">
+                        <i class="fas fa-sync-alt"></i> Обновлено: {{ post.updated_date|date:"d.m.Y H:i" }}
+                    </span>
+                    {% endif %}
+                </div>
+            </header>
+
+            {% if post.image %}
+            <div class="news-image">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+            </div>
+            {% endif %}
+
+            <div class="news-content">
+                {{ post.content|linebreaks }}
+            </div>
+
+            <footer class="news-footer">
+                <a href="{% url 'news_index' %}" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Вернуться к списку новостей
+                </a>
+            </footer>
+        </article>
+    </div>
+</section>
+{% endblock %}

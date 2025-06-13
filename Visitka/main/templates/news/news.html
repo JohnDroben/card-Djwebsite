@@ -9,9 +9,9 @@
         <h1>Последние новости</h1>
 
         {% for post in news %}
-        <article class="news-post">
-            <h2>{{ post.title }}</h2>
-            <div class="post-meta">
+        <article class="news-card">
+            <div class="card-header">
+                <h2><a href="{% url 'news_detail' post.slug %}">{{ post.title }}</a></h2>
                 <span class="post-date">
                     <i class="far fa-calendar-alt"></i> {{ post.pub_date|date:"d.m.Y H:i" }}
                 </span>
@@ -30,6 +30,12 @@
             </div>
             <div class="post-content">
                 {{ post.content|linebreaks }}
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'news_detail' post.slug %}" class="read-more-btn">
+                    <span class="read-more-text">Читать полностью</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
         </article>
         {% empty %}

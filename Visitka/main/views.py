@@ -1,13 +1,36 @@
 from django.shortcuts import render
-
-
+from .models import Profile
+from django.contrib.auth.models import AnonymousUser
 
 
 def home(request):
     return render (request, 'main/home.html')
 
+
 def about(request):
-    return render (request, 'main/about.html')
+    profile = None
+    is_owner = False
+
+    # Проверяем, аутентифицирован ли пользователь
+    if not isinstance(request.user, AnonymousUser):
+        try:
+            profile = Profile.objects.get(user=request.user)
+            is_owner = True
+        except Profile.DoesNotExist:
+            # Если профиля нет, попробуем найти любой публичный профиль
+            profile = Profile.objects.filter(is_public=True).first()
+    else:
+        # Для анонимных пользователей показываем случайный публичный профиль
+        profile = Profile.objects.filter(is_public=True).order_by('?').first()
+
+    context = {
+        'profile': profile,
+        'is_owner': is_owner
+    }
+    return render(request, 'main/about.html', context)
+
+
+
 
 def portfolio(request):
     projects = [

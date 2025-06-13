@@ -1,77 +1,62 @@
 {% extends "main/layoute.html" %}
 {% load static %}
 
-{% block title %}
-    <aside class="navbar">
-        {% include 'main/navbar.html' %}
-    </aside>
-{% endblock %}
+{% block title %}Обо мне{% endblock %}
 
 {% block content %}
-    <h1> Немного о себе</h1>
-    <p> Меня зовут [Ваше Имя], я профессиональный [ваша специальность].</p>
-    <p> Этот сайт создан для того, чтобы вы могли узнать больше о моих навыках, опыте и проектах.</p>
-<div class="features-grid">
-        <div class="feature-card">
-            <h3>Мои профессиональные навыки</h3>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4><i class="fas fa-laptop-code"></i> Веб-разработка</h4>
-                    <ul>
-                        <li>Создание современных адаптивных интерфейсов</li>
-                        <li>Разработка веб-приложений с использованием HTML5, CSS3, JavaScript</li>
-                        <li>Верстка Pixel Perfect с соблюдением дизайн-макетов</li>
-                    </ul>
-                </div>
+<section class="about-section">
+    <div class="container">
+        <div class="about-container">
+            <div class="about-content">
+                <h1 class="section-title">Обо мне</h1>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-database"></i> Работа с данными</h4>
-                    <ul>
-                        <li>Проектирование и оптимизация баз данных</li>
-                        <li>Разработка SQL-запросов и хранимых процедур</li>
-                        <li>Создание парсеров для сбора и анализа данных</li>
-                    </ul>
-                </div>
+                {% if profile %}
+                    <div class="about-bio">
+                        <h2>Привет, я {{ profile.user.get_full_name|default:profile.user.username }}</h2>
+                        <p>{{ profile.bio|default:"Информация обо мне скоро появится..."|linebreaks }}</p>
+                    </div>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-server"></i> Бэкенд-разработка</h4>
-                    <ul>
-                        <li>Создание RESTful API и веб-сервисов</li>
-                        <li>Разработка на Python с использованием Django и Flask</li>
-                        <li>Интеграция сторонних сервисов и платежных систем</li>
-                    </ul>
-                </div>
+                    <div class="about-skills">
+                        <h3>Мои навыки</h3>
+                        <p>{{ profile.skills|default:"Список навыков в процессе заполнения."|linebreaks }}</p>
+                    </div>
 
-                <div class="skill-category">
-                    <h4><i class="fab fa-telegram"></i> Разработка ботов</h4>
-                    <ul>
-                        <li>Создание Telegram-ботов для автоматизации задач</li>
-                        <li>Интеграция с внешними API и сервисами</li>
-                        <li>Разработка сложных сценариев взаимодействия</li>
-                    </ul>
-                </div>
+                    <div class="about-experience">
+                        <h3>Опыт работы</h3>
+                        <p>{{ profile.experience|default:"Опыт работы будет добавлен в ближайшее время."|linebreaks }}</p>
+                    </div>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-mobile-alt"></i> Мобильная разработка</h4>
-                    <ul>
-                        <li>Создание кроссплатформенных приложений</li>
-                        <li>Разработка для iOS и Android</li>
-                        <li>Адаптация интерфейсов под мобильные устройства</li>
-                    </ul>
-                </div>
+                    {% if is_owner %}
+                    <div class="profile-actions">
+                        <a href="{% url 'admin:main_profile_change' profile.id %}" class="edit-button">
+                            <i class="fas fa-edit"></i> Редактировать профиль
+                        </a>
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <div class="no-profile">
+                        <h2>Профиль не найден</h2>
+                        <p>Информация обо мне пока не добавлена.</p>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'admin:main_profile_add' %}" class="create-button">
+                            <i class="fas fa-plus-circle"></i> Создать профиль
+                        </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-vial"></i> Тестирование</h4>
-                    <ul>
-                        <li>Написание unit- и интеграционных тестов</li>
-                        <li>Автоматизация тестирования</li>
-                        <li>Обеспечение качества кода</li>
-                    </ul>
-                </div>
+            <div class="about-photo">
+                {% if profile and profile.photo %}
+                    <img src="{{ profile.photo.url }}" alt="Фото {{ profile.user.get_full_name|default:profile.user.username }}" class="profile-image">
+                {% else %}
+                    <div class="photo-placeholder">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Фото не добавлено</span>
+                    </div>
+                {% endif %}
             </div>
         </div>
-
-
-</div>
-
+    </div>
+</section>
 {% endblock %}
