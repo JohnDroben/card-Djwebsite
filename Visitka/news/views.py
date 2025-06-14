@@ -16,4 +16,7 @@ def news_detail(request, slug):
 
 
 
+
+
+
 # Create your views here.
